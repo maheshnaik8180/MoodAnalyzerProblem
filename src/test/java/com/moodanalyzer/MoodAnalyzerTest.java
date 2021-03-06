@@ -39,4 +39,7 @@ public class MoodAnalyzerTest {
         mood = moodCheck.analyzeMood();
         Assert.assertThat(mood, CoreMatchers.is("Happy"));
     }
+
+    
+
 }
