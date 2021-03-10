@@ -1,4 +1,5 @@
 package com.moodanalyzer;
+// mood
 public class MoodAnalyzer {
 
     private String message;
