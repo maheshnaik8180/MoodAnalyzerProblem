@@ -11,7 +11,7 @@ public class MoodAnalyzerTest {
     private MoodAnalyzer moodCheck;
 
     /**
-     * Testing Sad Mood
+     Testing Sad Mood
      */
     @Test
     public void testSadMood() {
@@ -21,7 +21,7 @@ public class MoodAnalyzerTest {
     }
 
     /**
-     * Testing Happy Mood
+     Testing Happy Mood
      */
     @Test
     public void testHappyMood() {
@@ -30,16 +30,31 @@ public class MoodAnalyzerTest {
         Assert.assertThat(mood, CoreMatchers.is("HAPPY"));
     }
 
-    /**
-     * Test for Exception Handling
-     */
+    //* Test for Exception Handling: Null
+
     @Test
     public void testMoodIfNullReturnsHappy() {
         moodCheck = new MoodAnalyzer(null);
-        mood = moodCheck.analyzeMood();
-        Assert.assertThat(mood, CoreMatchers.is("Happy"));
+        try {
+            mood = moodCheck.analyzeMood();
+        } catch (MoodAnalyzerException e) {
+            Assert.assertEquals("Happy", e.getMessage());
+            Assert.assertEquals(MoodAnalyzerException.ExceptionType.NULL, e.type);
+        }
     }
 
-    
-
+    /**
+     * Test for Exception Handling: Empty Message
+     */
+    @Test
+    public void testMoodIfEmptyReturnsEmptyMood() {
+        moodCheck = new MoodAnalyzer(" ");
+        try {
+            mood = moodCheck.analyzeMood();
+        } catch (MoodAnalyzerException e) {
+            Assert.assertEquals("Empty Mood", e.getMessage());
+            Assert.assertEquals(MoodAnalyzerException.ExceptionType.EMPTY, e.type);
+        }
+    }
 }
+

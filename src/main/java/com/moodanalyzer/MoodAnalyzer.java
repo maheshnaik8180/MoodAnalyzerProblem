@@ -1,5 +1,4 @@
 package com.moodanalyzer;
-// mood
 public class MoodAnalyzer {
 
     private String message;
@@ -13,17 +12,22 @@ public class MoodAnalyzer {
         this.message = message;
     }
 
-
+    /**
+     * Method To Analyze Mood
+     * @return Mood
+     */
     public String analyzeMood() {
         try {
-
+            // If message is Empty throwing Custom Exception
             if (message.length() == 0) {
-
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.EMPTY, "Empty Mood");
             }
-            return message.contains("Sad") ? "SAD" : "HAPPY";
-        } catch (NullPointerException e) {
 
-            return "Happy";
+            return message.contains("Sad") ? "SAD" : "HAPPY";
+
+        } catch (NullPointerException e) {
+            throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NULL, "Happy");
         }
     }
 }
+

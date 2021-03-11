@@ -1,8 +1,15 @@
+// mood analyzer
 package com.moodanalyzer;
 
-public class MoodAnalyzerException extends Throwable {
-    public static Object ExceptionType;
+public class MoodAnalyzerException extends RuntimeException {
+    ExceptionType type;
 
-    public MoodAnalyzerException(Object p0, String empty_mood) {
+    enum ExceptionType {
+        NULL, EMPTY
+    }
+    public MoodAnalyzerException(ExceptionType type,String exceptionMessage) {
+        super(exceptionMessage);
+        this.type = type;
+
     }
 }
